@@ -29,6 +29,7 @@ export default function ObjectCard({ object, onDelete }: any) {
           fill
           sizes="(max-width: 768px) 100vw, 25vw"
           className="object-cover"
+          priority
         />
       </div>
 
