@@ -2,7 +2,7 @@ import axios from "axios";
 // import { CreateObjectPayload } from "@/types/object";
 
 const apiClient = axios.create({
-  baseURL: "http://localhost:8080/api",
+  baseURL: "https://api-heyama-nestjs.vercel.app/",
 });
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

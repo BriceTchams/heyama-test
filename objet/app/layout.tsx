@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { Toaster } from "sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,7 +28,22 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">{children}
+       <Toaster richColors />
+
+      </body>
     </html>
   );
 }
+
+
+// // eslint-disable-next-line @typescript-eslint/no-explicit-any
+// export default function RootLayout({ children }: any) {
+//   return (
+//     <html lang="fr">
+//       <body>
+//         {children}
+//       </body>
+//     </html>
+//   );
+// }

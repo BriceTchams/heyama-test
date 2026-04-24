@@ -57,6 +57,8 @@ export default function CreateObjectForm({ onCreated }: { onCreated: () => void 
       onCreated();
     } catch (error) {
       toast.error("Erreur lors de la création.");
+      console.log(error);
+      
     } finally {
       setLoading(false);
     }
@@ -65,7 +67,7 @@ export default function CreateObjectForm({ onCreated }: { onCreated: () => void 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button>
+        <Button className="p-6 text-xl">
           <Plus className="w-4 h-4 mr-2" />
           Créer un objet
         </Button>
@@ -73,7 +75,7 @@ export default function CreateObjectForm({ onCreated }: { onCreated: () => void 
 
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle>Nouvel objet</DialogTitle>
+          <DialogTitle className="text-center text-xl">Nouvel objet</DialogTitle>
         </DialogHeader>
 
         <div className="flex flex-col gap-4 mt-2">
@@ -94,6 +96,7 @@ export default function CreateObjectForm({ onCreated }: { onCreated: () => void 
             className="border-2 border-dashed rounded-lg p-4 flex flex-col items-center justify-center cursor-pointer hover:border-primary transition-colors"
           >
             {preview ? (
+              // eslint-disable-next-line @next/next/no-img-element
               <img src={preview} alt="preview" className="h-40 object-cover rounded" />
             ) : (
               <>
@@ -112,7 +115,7 @@ export default function CreateObjectForm({ onCreated }: { onCreated: () => void 
             onChange={handleImageChange}
           />
 
-          <Button onClick={handleSubmit} disabled={loading}>
+          <Button onClick={handleSubmit} disabled={loading} className="mx-15 text-sm py-1 ">
             {loading ? "Création en cours..." : "Créer"}
           </Button>
         </div>

@@ -15,6 +15,7 @@ export default function ObjectList() {
   const fetchObjects = async () => {
     try {
       const data = await objectService.getAll();
+      console.log("Fetched objects:", data);
       setObjects(data);
     } catch {
       toast.error("Erreur lors du chargement des objects.");
@@ -27,6 +28,7 @@ export default function ObjectList() {
     try {
       await objectService.remove(id);
       setObjects((prev) => prev.filter((obj) => obj._id !== id));
+      fetchObjects();
       toast.success("Objet supprimé.");
     } catch {
       toast.error("Erreur lors de la suppression.");
@@ -42,7 +44,7 @@ useEffect(() => {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="flex items-center justify-between mb-8">
-        <h1 className="text-3xl font-bold">Mes Objets</h1>
+        <h1 className="text-2xl font-bold">Liste des  objets</h1>
         <CreateObjectForm onCreated={fetchObjects} />
       </div>
 
@@ -57,7 +59,7 @@ useEffect(() => {
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {objects.map((obj) => (
-            <ObjectCard key={obj._id} object={obj} onDelete={handleDelete} />
+            <ObjectCard key={obj.id} object={obj} onDelete={handleDelete} />
           ))}
         </div>
       )}

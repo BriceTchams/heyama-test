@@ -36,7 +36,7 @@ export default function ObjectCard({ object, onDelete }: any) {
           variant="outline"
           size="sm"
           className="flex-1"
-          onClick={() => router.push(`/objects/${object._id}`)}
+          onClick={() => router.push(`@/app/object/[${object.id}]/page.tsx`)}
         >
           <Eye className="w-4 h-4 mr-1" />
           Voir
@@ -45,7 +45,7 @@ export default function ObjectCard({ object, onDelete }: any) {
           variant="destructive"
           size="sm"
           className="flex-1"
-          onClick={() => onDelete(object._id)}
+          onClick={() => onDelete(object.id)}
         >
           <Trash2 className="w-4 h-4 mr-1" />
           Supprimer
