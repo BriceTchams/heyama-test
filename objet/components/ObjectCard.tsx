@@ -6,7 +6,17 @@ import { Button } from "@/components/ui/button";
 import { Trash2, Eye } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 export default function ObjectCard({ object, onDelete }: any) {
   const router = useRouter();
 
@@ -36,20 +46,39 @@ export default function ObjectCard({ object, onDelete }: any) {
           variant="outline"
           size="sm"
           className="flex-1"
-          onClick={() => router.push(`@/app/object/[${object.id}]/page.tsx`)}
+            onClick={() => router.push(`/object/${object.id}`)}
         >
           <Eye className="w-4 h-4 mr-1" />
           Voir
         </Button>
-        <Button
-          variant="destructive"
-          size="sm"
-          className="flex-1"
-          onClick={() => onDelete(object.id)}
-        >
-          <Trash2 className="w-4 h-4 mr-1" />
-          Supprimer
-        </Button>
+      <AlertDialog>
+            {/* Le Trigger remplace ton bouton ou entoure ton bouton */}
+            <AlertDialogTrigger asChild>
+              <Button variant="destructive" size="sm" className="flex-1">
+                <Trash2 className="w-4 h-4 mr-1" />
+                Supprimer
+              </Button>
+            </AlertDialogTrigger>
+            
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>Êtes-vous absolument sûr ?</AlertDialogTitle>
+                <AlertDialogDescription>
+                  Cette action est irréversible. Cela supprimera définitivement l objet
+                  <strong> {object.title}</strong> 
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Annuler</AlertDialogCancel>
+                <AlertDialogAction 
+                  onClick={() => onDelete(object.id)}
+                  className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                >
+                  Supprimer
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+       </AlertDialog>
       </CardFooter>
     </Card>
   );
