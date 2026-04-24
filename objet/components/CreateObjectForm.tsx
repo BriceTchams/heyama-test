@@ -67,13 +67,13 @@ export default function CreateObjectForm({ onCreated }: { onCreated: () => void 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button className="p-6 text-xl">
+        <Button className="p-6 text-sm">
           <Plus className="w-4 h-4 mr-2" />
           Créer un objet
         </Button>
       </DialogTrigger>
 
-      <DialogContent className="sm:max-w-md">
+       <DialogContent className="sm:max-w-md" aria-describedby={undefined}>
         <DialogHeader>
           <DialogTitle className="text-center text-xl">Nouvel objet</DialogTitle>
         </DialogHeader>

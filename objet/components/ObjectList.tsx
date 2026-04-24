@@ -6,6 +6,7 @@ import ObjectCard from "./ObjectCard";
 import CreateObjectForm from "./CreateObjectForm";
 import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
+import { useSocket } from "@/hook/useSocket";
 
 export default function ObjectList() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -34,6 +35,11 @@ export default function ObjectList() {
       toast.error("Erreur lors de la suppression.");
     }
   };
+
+  // Ajouter ceci dans ObjectList
+useSocket((newObject) => {
+  setObjects((prev) => [newObject, ...prev]);
+});
 
 useEffect(() => {
   const load = async () => {

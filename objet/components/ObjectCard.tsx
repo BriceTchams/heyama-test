@@ -27,6 +27,7 @@ export default function ObjectCard({ object, onDelete }: any) {
           src={object.imageUrl}
           alt={object.title}
           fill
+          sizes="(max-width: 768px) 100vw, 25vw"
           className="object-cover"
         />
       </div>

@@ -41,8 +41,13 @@ export default function ObjectDetailPage() {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-screen">
-        <Loader2 className="w-8 h-8 animate-spin text-muted-foreground" />
+      <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950">
+        <header className="border-b bg-white dark:bg-zinc-900 px-6 py-4">
+          <h1 className="text-2xl font-bold tracking-tight">ObjetApp</h1>
+        </header>
+        <div className="flex justify-center items-center h-[80vh]">
+          <Loader2 className="w-8 h-8 animate-spin text-muted-foreground" />
+        </div>
       </div>
     );
   }
@@ -50,42 +55,49 @@ export default function ObjectDetailPage() {
   if (!object) return null;
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-2xl">
+    <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950">
       {/* Header */}
-      <div className="flex items-center justify-between mb-6">
-        <Button variant="outline" onClick={() => router.push("/")}>
-          <ArrowLeft className="w-4 h-4 mr-2" />
-          Retour
-        </Button>
-        <Button variant="destructive" onClick={handleDelete}>
-          <Trash2 className="w-4 h-4 mr-2" />
-          Supprimer
-        </Button>
-      </div>
+      <header className="border-b bg-white dark:bg-zinc-900 px-6 py-4">
+        <h1 className="text-2xl font-bold tracking-tight">ObjetApp</h1>
+      </header>
 
-      {/* Image */}
-      <div className="relative w-full h-72 rounded-xl overflow-hidden mb-6">
-        <Image
-          src={object.imageUrl}
-          alt={object.title}
-          fill
-          className="object-cover"
-        />
-      </div>
+      <main className="max-w-2xl mx-auto px-6 py-10">
+        {/* Navigation */}
+        <div className="flex items-center justify-between mb-6">
+          <Button variant="outline" onClick={() => router.push("/")}>
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Retour
+          </Button>
+          <Button variant="destructive" onClick={handleDelete}>
+            <Trash2 className="w-4 h-4 mr-2" />
+            Supprimer
+          </Button>
+        </div>
 
-      {/* Détails */}
-      <h1 className="text-3xl font-bold mb-3">{object.title}</h1>
-      <p className="text-muted-foreground text-base leading-relaxed mb-4">
-        {object.description}
-      </p>
-      <p className="text-sm text-muted-foreground">
-        Créé le{" "}
-        {new Date(object.createdAt).toLocaleDateString("fr-FR", {
-          day: "2-digit",
-          month: "long",
-          year: "numeric",
-        })}
-      </p>
+        {/* Image */}
+        <div className="relative w-full h-72 rounded-xl overflow-hidden mb-6">
+          <Image
+            src={object.imageUrl}
+            alt={object.title}
+            fill
+            className="object-cover"
+          />
+        </div>
+
+        {/* Détails */}
+        <h1 className="text-3xl font-bold mb-3">{object.title}</h1>
+        <p className="text-muted-foreground text-base leading-relaxed mb-4">
+          {object.description}
+        </p>
+        <p className="text-sm text-muted-foreground">
+          Créé le{" "}
+          {new Date(object.createdAt).toLocaleDateString("fr-FR", {
+            day: "2-digit",
+            month: "long",
+            year: "numeric",
+          })}
+        </p>
+      </main>
     </div>
   );
 }
