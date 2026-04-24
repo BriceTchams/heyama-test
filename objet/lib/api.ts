@@ -2,16 +2,19 @@ import axios from "axios";
 // import { CreateObjectPayload } from "@/types/object";
 
 const apiClient = axios.create({
-  baseURL: "http://localhost:3001",
+  baseURL: "http://localhost:8080/api",
 });
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const handleApiError = (error :any) => {
   if (error.response) {
+
     throw error.response.data;
-  } else if (error.request) {
+  } 
+  else if (error.request) {
     throw { message: "Le serveur ne répond pas. Vérifiez votre connexion." };
-  } else {
+  } 
+  else {
     throw { message: error.message };
   }
 };
