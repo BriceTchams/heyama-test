@@ -43,7 +43,7 @@ export default function ObjectCard({ object, onDelete }: any) {
         </p>
       </CardContent>
 
-      <CardFooter className="flex justify-between gap-2 p-4 pt-0">
+      <CardFooter className="flex justify-between gap-2 p-4 pt-4">
         <Button
           variant="outline"
           size="sm"
