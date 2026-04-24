@@ -8,6 +8,7 @@ import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
 
 export default function ObjectList() {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [objects, setObjects] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -16,7 +17,7 @@ export default function ObjectList() {
       const data = await objectService.getAll();
       setObjects(data);
     } catch {
-      toast.error("Erreur lors du chargement.");
+      toast.error("Erreur lors du chargement des objects.");
     } finally {
       setLoading(false);
     }
